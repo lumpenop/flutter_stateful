@@ -13,6 +13,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  bool showTitle = true;
+
+  void toggleTitle() {
+    setState(() {
+      showTitle = !showTitle;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,12 +31,14 @@ class _MyAppState extends State<MyApp> {
       ))),
       title: 'Flutter Demo',
       home: Scaffold(
-        backgroundColor: const Color(0x0ff4eddb),
+        backgroundColor: const Color.fromARGB(178, 233, 220, 189),
         body: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            LargeTitle(),
+          children: [
+            showTitle ? const LargeTitle() : const Text('nothing'),
+            IconButton(
+                onPressed: toggleTitle, icon: const Icon(Icons.remove_red_eye))
           ],
         )),
       ),
@@ -36,13 +46,33 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class LargeTitle extends StatelessWidget {
+class LargeTitle extends StatefulWidget {
   const LargeTitle({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<LargeTitle> createState() => _LargeTitleState();
+}
+
+class _LargeTitleState extends State<LargeTitle> {
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    print('initState');
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print('dispose');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('build');
     return Text(
       'Large Title',
       style: TextStyle(
