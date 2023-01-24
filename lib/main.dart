@@ -36,9 +36,18 @@ class _MyAppState extends State<MyApp> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              width: 100,
+              height: 100,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/siba.png'),
+                ),
+              ),
+            ),
             showTitle ? const LargeTitle() : const Text('nothing'),
             IconButton(
-                onPressed: toggleTitle, icon: const Icon(Icons.remove_red_eye))
+                onPressed: toggleTitle, icon: const Icon(Icons.remove_red_eye)),
           ],
         )),
       ),
